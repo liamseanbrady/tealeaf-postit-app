@@ -1,0 +1,17 @@
+<%= render 'shared/content_header', title: @post.title %>
+
+<p><%= @post.description %></p>
+
+<br>
+
+<%= render 'shared/content_header', title: "Comments" %>
+
+<div>
+  <% @post.comments.each do |comment| %>
+    <div class="span8 well">
+      <p><em><%= comment.body %><em><p>
+      <span class="quiet">by <%= comment.creator.username %></span>
+      <small>at <%= comment.created_at %></small>
+    </div>
+  <% end %>
+</div>
