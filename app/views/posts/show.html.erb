@@ -1,3 +1,7 @@
+<p>
+  <%= render @post.categories %>
+</p>
+
 <%= render 'shared/content_header', title: @post.title %>
 
 <p><%= @post.description %></p>
@@ -6,7 +10,7 @@
 
 <%= render 'shared/content_header', title: "Comments" %>
 
-<div>
+<div class="row">
   <% @post.comments.each do |comment| %>
     <div class="span8 well">
       <p><em><%= comment.body %><em><p>

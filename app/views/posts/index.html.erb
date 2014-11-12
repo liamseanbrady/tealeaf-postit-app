@@ -1,8 +1,9 @@
 <%= render 'shared/content_header', title: "All posts" %>
 
-<div>
+<div class="row">
   <% @posts.each do |post| %>
     <div class="span8 well">
+      <%= render post.categories %>
       <h4><%= link_to post.title, post_path(post) %></h4>
       <p><%= post.description %></p>
       <span class="quiet">posted by</span> <%= post.creator.username %>
