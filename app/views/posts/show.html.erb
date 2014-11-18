@@ -10,16 +10,25 @@
 
 <p><%= @post.description %></p>
 
-<br>
+<hr>
 
-<%= render 'shared/content_header', title: "Comments" %>
+<h5>Comments:</h5>
 
-<div class="row">
-  <% @post.comments.each do |comment| %>
-    <div class="span8 well">
-      <p><em><%= comment.body %><em><p>
-      <span class="quiet">by <%= comment.creator.username %></span>
-      <small>at <%= comment.created_at %></small>
-    </div>
-  <% end %>
-</div>
+<%= render 'shared/errors', ar_obj: @comment %>
+
+<%= form_for [@post, @comment] do |f| %>
+  <div class="control-group">
+    <%= f.label :body, 'Leave a comment' %>
+    <%= f.text_area :body, rows: 4, class: 'span4' %>
+    <br/>
+  </div>
+  <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+<% end %>
+
+<% @post.comments.each do |comment| %>
+  <div class="span8 well">
+    <p><em>"<%= comment.body %>"<em><p>
+    <span class="quiet">by <%= link_to comment.creator.username, '' %></span> at
+    <small><%= comment.created_at %></small>
+  </div>
+<% end %>
