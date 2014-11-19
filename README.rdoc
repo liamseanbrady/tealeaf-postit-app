@@ -1,3 +1,5 @@
+TODO: Write proper README
+
 This is a project done as part of Tealeaf Academy's 'Rapid Prototyping With Ruby on Rails'.
 
 == Getting Started
