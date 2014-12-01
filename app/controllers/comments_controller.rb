@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
+  before_action :require_user
+
   def create
     @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
     @comment.post = @post
-    @comment.creator = User.first
+    @comment.creator = current_user
 
     if @comment.save
       flash[:notice] = 'Your comment was added'
