@@ -6,10 +6,6 @@ class PostsController < ApplicationController
     @posts = Post.all.sort_by { |p| p.total_votes }.reverse
   end
 
-  def show
-    @comment = Comment.new
-  end
-
   def new
     @post = Post.new
   end
@@ -37,15 +33,18 @@ class PostsController < ApplicationController
     end
   end
 
-  def vote
-    @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+  def show
+    @comment = Comment.new
+  end
 
-    if @vote.valid?
+  def vote
+    vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+
+    if vote.valid?
       flash[:notice] = 'Your vote was counted'
     else
-      flash[:error] = 'Your vote was not counted'
+      flash[:error] = 'You can only vote on that once'
     end
-
     redirect_to :back
   end
 

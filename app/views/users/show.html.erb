@@ -19,9 +19,9 @@
 </ul>
 
 <% if params[:tab].nil? %>
-  <%= render @user.posts %>
+  <%= render @user.posts.sort_by{ |p| p.total_votes }.reverse %>
 <% end %>
 
 <% if params[:tab] == 'comments' %>
-  <%= render @user.comments, show_post: true %>
+  <%= render @user.comments.sort_by{ |c| c.total_votes }.reverse, show_post: true %>
 <% end %>

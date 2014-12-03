@@ -29,4 +29,6 @@
   <% end %>
 <% end %>
 
-<%= render @post.comments %>
+<!-- TODO: Show 3 other recent posts (if they have any more) for the author of this post -->
+
+<%= render @post.comments.sort_by{ |c| c.total_votes }.reverse %>
