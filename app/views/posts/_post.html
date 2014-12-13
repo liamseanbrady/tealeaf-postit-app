@@ -1,13 +1,12 @@
 <div class="row">
   <div class="span0 well text-center">
-    <!-- TODO: Don't show arrows if user has already voted on this post -->
     <% if logged_in? %>
       <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
         <i class="icon-arrow-up"></i>
       <% end %>
       <br/>
     <% end %>
-    <span id="post_<%= post.id %>_vote"><%= post.total_votes %></span> votes
+    <span id="post_<%= post.to_param %>_vote"><%= post.total_votes %></span> votes
     <% if logged_in? %>
       <br/>
       <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
@@ -17,7 +16,7 @@
   </div>
   <div class="span8  well">
     <%= render post.categories %>
-    <h4><%= link_to post.title, fix_url(post.url) %></h4>
+    <h4><%= link_to post.title, post_path(post) %></h4>
     <p><%= post.description %></p>
     <span class="quiet">posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
     <small>at <%= display_datetime(post.created_at) %> </small>
