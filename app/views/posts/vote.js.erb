@@ -1,1 +1,1 @@
-$('#post_<%= @post.id %>_vote').html('<%= @post.total_votes %>')
+$('#post_<%= @post.to_param %>_vote').html('<%= @post.total_votes %>');
