@@ -1,4 +1,4 @@
-<% if logged_in? && @post.creator == current_user %>
+<% if logged_in? && (@post.creator == current_user || current_user.admin?) %>
   <p class="pull-right">
     [<%= link_to 'edit this post', edit_post_path(@post) %>]
   </p>
@@ -28,7 +28,5 @@
     <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
   <% end %>
 <% end %>
-
-<!-- TODO: Show 3 other recent posts (if they have any more) for the author of this post -->
 
 <%= render @post.comments.sort_by{ |c| c.total_votes }.reverse %>
