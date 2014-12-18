@@ -38,6 +38,10 @@ div.nav_item {
   }
 }
 
+.badge:nth-of-type(n+2) {
+  margin-left: 6px;
+}
+
 div.comment_votes {
   padding: 10px;
 }
